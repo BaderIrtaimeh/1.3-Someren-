@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Someren.Models;
 
 namespace Someren.Controllers
 {
@@ -78,6 +79,18 @@ namespace Someren.Controllers
             {
                 return View();
             }
+        }
+
+        public IActionResult Index()
+        {
+            // Mock data
+            var students = new List<Student>
+            {
+                new Student { StudentNumber = 1, FirstName = "John", LastName = "Doe", Telephone = "123-456-7890", Class = "A" },
+                new Student { StudentNumber = 2, FirstName = "Jane", LastName = "Smith", Telephone = "987-654-3210", Class = "B" }
+            };
+
+            return View(students);
         }
     }
 }
