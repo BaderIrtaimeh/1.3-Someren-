@@ -1,6 +1,12 @@
-﻿@model IEnumerable<Someren.Models.Student>
+﻿@model List<Student>
 
-<h2>Student List</h2>
+@{
+    ViewData["Title"] = "Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Students List</h2>
+
 <table class="table">
     <thead>
         <tr>
@@ -9,6 +15,7 @@
             <th>Last Name</th>
             <th>Phone Number</th>
             <th>Class</th>
+            <th>Amount Drink Consumed</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +27,7 @@
                 <td>@student.LastName</td>
                 <td>@student.PhoneNumber</td>
                 <td>@student.Class</td>
+                <td>@student.AmountDrinkConsumed</td>
             </tr>
         }
     </tbody>

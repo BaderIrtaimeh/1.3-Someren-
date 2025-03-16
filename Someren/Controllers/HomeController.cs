@@ -16,18 +16,20 @@ namespace Someren.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index", "Students");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Students()
         {
-            return View();
-        }
+            var students = new List<Student>
+        {
+            new Student { StudentNumber = 1, FirstName = "John", LastName = "Doe", PhoneNumber = "123-456-7890", Class = "A", AmountDrinkConsumed = "23" },
+            new Student { StudentNumber = 2, FirstName = "Jane", LastName = "Smith", PhoneNumber = "987-654-3210", Class = "B", AmountDrinkConsumed = "2" },
+            new Student { StudentNumber = 3, FirstName = "Mike", LastName = "Johnson", PhoneNumber = "555-555-5555", Class = "C", AmountDrinkConsumed = "10" }
+        };
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(students); 
         }
     }
+
 }

@@ -19,6 +19,8 @@ namespace Someren
                 app.UseHsts();
             }
 
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -29,6 +31,9 @@ namespace Someren
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "students",
+                pattern: "{controller=Students}/{action=Index}/{id?}");
 
             app.Run();
         }

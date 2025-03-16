@@ -6,91 +6,36 @@ namespace Someren.Controllers
 {
     public class StudentsController : Controller
     {
-        // GET: StudentsController
-        public ActionResult Index()
-        {
-            return View();
-        }
+        private readonly ILogger<StudentsController> _logger;
 
-        // GET: StudentsController/Details/5
-        public ActionResult Details(int id)
+        public StudentsController(ILogger<StudentsController> logger)
         {
-            return View();
+            _logger = logger;
         }
-
-        // GET: StudentsController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: StudentsController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: StudentsController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: StudentsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: StudentsController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: StudentsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         public IActionResult Index()
         {
-            // Mock data
+            return View();
+        }
+        public IActionResult Students()
+        {
+            // Mock data directly inside the controller
             var students = new List<Student>
             {
-                new Student { StudentNumber = 1, FirstName = "John", LastName = "Doe", Telephone = "123-456-7890", Class = "A" },
-                new Student { StudentNumber = 2, FirstName = "Jane", LastName = "Smith", Telephone = "987-654-3210", Class = "B" }
+                new Student { StudentNumber = 1, FirstName = "John", LastName = "Doe", PhoneNumber = "123-456-7890", Class = "A", AmountDrinkConsumed = "23" },
+                new Student { StudentNumber = 2, FirstName = "Jane", LastName = "Smith", PhoneNumber = "987-654-3210", Class = "B", AmountDrinkConsumed = "2" },
+                new Student { StudentNumber = 3, FirstName = "Mike", LastName = "Johnson", PhoneNumber = "555-555-5555", Class = "C", AmountDrinkConsumed = "10" }
             };
+            if (students == null)
+            {
+                _logger.LogError("Student list is null.");
+                return View(new List<Student>());
+            }
 
-            return View(students);
+            _logger.LogInformation("Displaying student list with {count} students.", students.Count);
+
+            return View("Index", "Students");
+
+
         }
     }
 }
