@@ -1,41 +1,44 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Someren.Models;
+using Someren.Repositories;
 
 namespace Someren.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly ILogger<StudentsController> _logger;
+        private readonly IStudentRepository _repo;
 
-        public StudentsController(ILogger<StudentsController> logger)
+        public StudentsController(IStudentRepository repo)
         {
-            _logger = logger;
+            _repo = repo;
         }
+
         public IActionResult Index()
         {
-            return View();
+            var students = _repo.GetAll();
+            return View(students);
         }
-        public IActionResult Students()
+        public IActionResult Add() => View();
+
+        [HttpPost]
+        public IActionResult Add(Student student)
         {
-            // Mock data directly inside the controller
-            var students = new List<Student>
+            if (ModelState.IsValid)
             {
-                new Student { StudentNumber = 1, FirstName = "John", LastName = "Doe", PhoneNumber = "123-456-7890", Class = "A", AmountDrinkConsumed = "23" },
-                new Student { StudentNumber = 2, FirstName = "Jane", LastName = "Smith", PhoneNumber = "987-654-3210", Class = "B", AmountDrinkConsumed = "2" },
-                new Student { StudentNumber = 3, FirstName = "Mike", LastName = "Johnson", PhoneNumber = "555-555-5555", Class = "C", AmountDrinkConsumed = "10" }
-            };
-            if (students == null)
-            {
-                _logger.LogError("Student list is null.");
-                return View(new List<Student>());
+                _repo.Add(student);
+                return RedirectToAction("Index");
             }
-
-            _logger.LogInformation("Displaying student list with {count} students.", students.Count);
-
-            return View("Index", "Students");
-
-
+            return View(student);
         }
+
+        [HttpPost]
+        public IActionResult Delete(int studentNumber)
+        {
+            _repo.Delete(studentNumber);
+            return RedirectToAction("Index");
+        }
+
     }
 }
+

@@ -1,3 +1,5 @@
+using Someren.Repositories;
+
 namespace Someren
 {
     public class Program
@@ -8,6 +10,7 @@ namespace Someren
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IStudentRepository, DbStudentRepository>();
 
             var app = builder.Build();
 
@@ -18,6 +21,8 @@ namespace Someren
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+          
 
 
 
