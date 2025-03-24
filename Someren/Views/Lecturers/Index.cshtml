@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<Someren.Models.Lecturer>
+
 @{
+    ViewData["Title"] = "Lecturers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Lecturers</h2>
 
-<a class="btn btn-primary mb-3" asp-action="Add">Add Lecturer</a>
+<a class="btn btn-success mb-3" asp-action="Add">Add Lecturer</a>
 
-<table class="table table-bordered">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>First Name</th>
@@ -26,9 +28,10 @@
                 <td>@lecturer.PhoneNumber</td>
                 <td>@lecturer.DateOfBirth.ToString("yyyy-MM-dd")</td>
                 <td>
-                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@lecturer.LecturerID">Edit</a>
-                    <form asp-action="Delete" asp-route-id="@lecturer.LecturerID" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    <a asp-action="Edit" asp-route-id="@lecturer.LecturerID" class="btn btn-warning btn-sm me-2">Edit</a>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@lecturer.LecturerID" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>
             </tr>

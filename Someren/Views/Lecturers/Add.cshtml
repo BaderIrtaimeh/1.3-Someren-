@@ -1,25 +1,28 @@
 ﻿@model Someren.Models.Lecturer
+
 @{
+    ViewData["Title"] = "Add Lecturer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2>Add Lecturer</h2>
 
 <form asp-action="Add" method="post">
-    <div class="form-group">
-        <label asp-for="FirstName"></label>
+    <div class="form-group mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
         <input asp-for="FirstName" class="form-control" />
     </div>
-    <div class="form-group">
-        <label asp-for="LastName"></label>
+    <div class="form-group mb-3">
+        <label asp-for="LastName" class="form-label"></label>
         <input asp-for="LastName" class="form-control" />
     </div>
-    <div class="form-group">
-        <label asp-for="PhoneNumber"></label>
+    <div class="form-group mb-3">
+        <label asp-for="PhoneNumber" class="form-label"></label>
         <input asp-for="PhoneNumber" class="form-control" />
     </div>
-    <div class="form-group">
-        <label asp-for="DateOfBirth"></label>
+    <div class="form-group mb-3">
+        <label asp-for="DateOfBirth" class="form-label"></label>
         <input asp-for="DateOfBirth" class="form-control" type="date" />
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-success">Add Lecturer</button>
 </form>
