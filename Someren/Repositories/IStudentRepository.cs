@@ -7,8 +7,10 @@ namespace Someren.Repositories
     public interface IStudentRepository
     {
         List<Student> GetAll();
+        Student GetById(string studentNumber); 
         void Add(Student student);
-        void Delete(int studentNumber);
+        void Update(Student student);          
+        void Delete(string studentNumber);     
     }
 
 }

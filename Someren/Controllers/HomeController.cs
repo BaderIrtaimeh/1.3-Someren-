@@ -13,12 +13,18 @@ namespace Someren.Controllers
         {
             _logger = logger;
         }
-
+        public IActionResult Privacy()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
         }
-
+        public IActionResult Lectures()
+        {
+            return View();
+        }
         public IActionResult Students()
         {
             var students = new List<Student> { };

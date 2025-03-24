@@ -1,83 +1,54 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Someren.Models;
 
 namespace Someren.Controllers
 {
     public class LecturersController : Controller
     {
-        // GET: LecturersController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View();
+            var lecturers = _repo.GetAll();
+            return View(lecturers);
         }
 
-        // GET: LecturersController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
 
-        // GET: LecturersController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: LecturersController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Add(Lecturer lecturer)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                _repo.Add(lecturer);
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(lecturer);
         }
 
-        // GET: LecturersController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(string id)
         {
-            return View();
+            var lecturer = _repo.GetById(id);
+            if (lecturer == null) return NotFound();
+            return View(lecturer);
         }
 
-        // POST: LecturersController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(Lecturer lecturer)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                _repo.Update(lecturer);
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(lecturer);
         }
 
-        // GET: LecturersController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: LecturersController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(string id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _repo.Delete(id);
+            return RedirectToAction("Index");
         }
+
     }
 }

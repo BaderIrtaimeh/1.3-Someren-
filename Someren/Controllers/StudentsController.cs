@@ -33,11 +33,36 @@ namespace Someren.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int studentNumber)
+        public IActionResult Delete(string studentNumber)
         {
             _repo.Delete(studentNumber);
             return RedirectToAction("Index");
         }
+        public IActionResult Edit(string id)
+        {
+            var student = _repo.GetById(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.Update(student); 
+                return RedirectToAction("Index");
+            }
+
+            return View(student); 
+        }
+
+
+
 
     }
 }
