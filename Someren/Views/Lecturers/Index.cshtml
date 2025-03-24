@@ -1,37 +1,37 @@
-﻿@model List<Someren.Models.Lecturer>
+﻿@model IEnumerable<Someren.Models.Lecturer>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2>Lecturers</h2>
 
-<a class="btn btn-success mb-3" asp-action="Add">Add Lecturer</a>
+<a class="btn btn-primary mb-3" asp-action="Add">Add Lecturer</a>
 
-<table class="table table-striped">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th>Lecture ID</th>
-            <th>Name</th>
-            <th>Moderates</th>
-            <th>Date of birth</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var lecturer in Model)
         {
             <tr>
-                <td>@lecturer.LecturerID</td>
-                <td>@lecturer.Name</td>
-                <td>@lecturer.Moderates</td>
-                <td>@lecturer.DateOfBirth</td>
-                
+                <td>@lecturer.FirstName</td>
+                <td>@lecturer.LastName</td>
+                <td>@lecturer.PhoneNumber</td>
+                <td>@lecturer.DateOfBirth.ToString("yyyy-MM-dd")</td>
                 <td>
-                    <form asp-action="Delete" method="post" style="display:inline;">
-                        <input type="hidden" name="Lectuer ID" value="@lecturer.LecturerID" />
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@lecturer.LecturerID">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@lecturer.LecturerID" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-

@@ -1,11 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Someren.Models;
+using Someren.Repositories;
 
 namespace Someren.Controllers
 {
     public class LecturersController : Controller
     {
+        private readonly ILecturerRepository _repo;
+
+        public LecturersController(ILecturerRepository repo)
+        {
+            _repo = repo;
+        }
         public IActionResult Index()
         {
             var lecturers = _repo.GetAll();
@@ -25,7 +32,7 @@ namespace Someren.Controllers
             return View(lecturer);
         }
 
-        public IActionResult Edit(string id)
+        public IActionResult Edit(int id)
         {
             var lecturer = _repo.GetById(id);
             if (lecturer == null) return NotFound();
@@ -44,7 +51,7 @@ namespace Someren.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             _repo.Delete(id);
             return RedirectToAction("Index");
