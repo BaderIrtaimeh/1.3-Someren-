@@ -28,9 +28,9 @@
                 <td>@lecturer.PhoneNumber</td>
                 <td>@lecturer.DateOfBirth.ToString("yyyy-MM-dd")</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@lecturer.LecturerID" class="btn btn-warning btn-sm me-2">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@lecturer.LectureID" class="btn btn-warning btn-sm me-2">Edit</a>
                     <form asp-action="Delete" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@lecturer.LecturerID" />
+                        <input type="hidden" name="id" value="@lecturer.LectureID" />
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>
