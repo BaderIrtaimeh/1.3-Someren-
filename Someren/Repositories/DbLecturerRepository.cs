@@ -29,7 +29,7 @@
                 {
                     lecturers.Add(new Lecturer
                     {
-                        LectureID = reader.GetInt32(reader.GetOrdinal("LectureID")),
+                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
@@ -55,7 +55,7 @@
                 {
                     return new Lecturer
                     {
-                        LectureID = reader.GetInt32(reader.GetOrdinal("LectureID")), // 👈 here
+                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")), // 👈 here
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
