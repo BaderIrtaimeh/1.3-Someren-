@@ -55,7 +55,8 @@
                 {
                     return new Lecturer
                     {
-                        LectureID = reader.GetOrdinal("LecturerID"),
+                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
+
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
@@ -71,8 +72,10 @@
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = @"INSERT INTO Lecturer (LecturerID, FirstName, LastName, PhoneNumber, DateOfBirth) 
-                 VALUES (@LecturerID, @FirstName, @LastName, @PhoneNumber, @DateOfBirth)";
+                string query = @"INSERT INTO Lecturer (FirstName, LastName, PhoneNumber, DateOfBirth) 
+                 VALUES (@FirstName, @LastName, @PhoneNumber, @DateOfBirth)";
+                
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@LecturerID", lecturer.LectureID); 
                 cmd.Parameters.AddWithValue("@FirstName", lecturer.FirstName);

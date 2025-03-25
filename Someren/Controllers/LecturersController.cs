@@ -50,6 +50,7 @@ namespace Someren.Controllers
             return View(lecturer);
         }
 
+
         [HttpPost]
         public IActionResult Delete(int id)
         {
