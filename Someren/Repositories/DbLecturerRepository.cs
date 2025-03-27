@@ -20,7 +20,7 @@
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Lecturer";
+                string query = "SELECT * FROM Lecturer";// must change this, instead of * should be the column names.
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
 
@@ -29,7 +29,7 @@
                 {
                     lecturers.Add(new Lecturer
                     {
-                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
+                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),  //fixed the data typo, instead of string int. 
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
@@ -45,7 +45,7 @@
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Lecturer WHERE LecturerID = @Id";
+                string query = "SELECT * FROM Lecturer WHERE LecturerID = @Id";  // same with the other query, must change the * to column names.
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
                 conn.Open();

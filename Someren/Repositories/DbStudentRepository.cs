@@ -19,7 +19,7 @@ namespace Someren.Repositories
             List<Student> students = new List<Student>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM student";
+                string query = "SELECT * FROM student"; // must change the * to column names.
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -28,7 +28,7 @@ namespace Someren.Repositories
                 {
                     students.Add(new Student
                     {
-                        StudentNumber = reader.GetInt32(0).ToString("D6"),
+                        StudentNumber = reader.GetString(),
                         FirstName = reader.GetString(1),
                         LastName = reader.GetString(2),
                         PhoneNumber = reader.GetString(3),
@@ -46,7 +46,7 @@ namespace Someren.Repositories
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Student WHERE StudentNumber = @studentNumber", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Student WHERE StudentNumber = @studentNumber", conn); // must change the * to column names.
                 cmd.Parameters.AddWithValue("@studentNumber", studentNumber);
                 SqlDataReader reader = cmd.ExecuteReader();
 
