@@ -14,13 +14,23 @@
             _connectionString = config.GetConnectionString("SomerenDatabase");
         }
 
+    
         public List<Lecturer> GetAll()
         {
-            List<Lecturer> lecturers = new List<Lecturer>();
+            var lecturers = new List<Lecturer>();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Lecturer";// must change this, instead of * should be the column names.
+               
+                string query = @"
+                SELECT 
+                    LecturerID, 
+                    FirstName, 
+                    LastName, 
+                    PhoneNumber, 
+                    DateOfBirth
+                FROM Lecturer
+            ";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
 
@@ -29,7 +39,8 @@
                 {
                     lecturers.Add(new Lecturer
                     {
-                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),  //fixed the data typo, instead of string int. 
+                        
+                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
@@ -41,11 +52,25 @@
             return lecturers;
         }
 
+        
         public Lecturer GetById(int id)
         {
+            Lecturer lecturer = null;
+
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Lecturer WHERE LecturerID = @Id";  // same with the other query, must change the * to column names.
+              
+                string query = @"
+                SELECT 
+                    LecturerID, 
+                    FirstName, 
+                    LastName, 
+                    PhoneNumber, 
+                    DateOfBirth
+                FROM Lecturer
+                WHERE LecturerID = @Id
+            ";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
                 conn.Open();
@@ -53,65 +78,70 @@
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Lecturer
+                    lecturer = new Lecturer
                     {
                         LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
-
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
                         DateOfBirth = reader.GetDateTime(reader.GetOrdinal("DateOfBirth"))
                     };
                 }
-
-                return null;
             }
+
+            return lecturer;
         }
 
+       
         public void Add(Lecturer lecturer)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = @"INSERT INTO Lecturer (FirstName, LastName, PhoneNumber, DateOfBirth) 
-                 VALUES (@FirstName, @LastName, @PhoneNumber, @DateOfBirth)";
-                
+                string query = @"
+                INSERT INTO Lecturer (FirstName, LastName, PhoneNumber, DateOfBirth) 
+                VALUES (@FirstName, @LastName, @PhoneNumber, @DateOfBirth)
+            ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@LecturerID", lecturer.LectureID); 
                 cmd.Parameters.AddWithValue("@FirstName", lecturer.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", lecturer.LastName);
                 cmd.Parameters.AddWithValue("@PhoneNumber", lecturer.PhoneNumber);
                 cmd.Parameters.AddWithValue("@DateOfBirth", lecturer.DateOfBirth);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
+      
         public void Update(Lecturer lecturer)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                
-                {
-                    string query = @"UPDATE Lecturer 
-                         SET FirstName = @FirstName, 
-                             LastName = @LastName, 
-                             PhoneNumber = @PhoneNumber, 
-                             DateOfBirth = @DateOfBirth 
-                         WHERE LecturerID = @LecturerID";
+                string query = @"
+                UPDATE Lecturer 
+                SET FirstName   = @FirstName, 
+                    LastName    = @LastName, 
+                    PhoneNumber = @PhoneNumber, 
+                    DateOfBirth = @DateOfBirth
+                WHERE LecturerID = @LecturerID
+            ";
 
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@LecturerID", lecturer.LectureID);
-                    cmd.Parameters.AddWithValue("@FirstName", lecturer.FirstName);
-                    cmd.Parameters.AddWithValue("@LastName", lecturer.LastName);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", lecturer.PhoneNumber);
-                    cmd.Parameters.AddWithValue("@DateOfBirth", lecturer.DateOfBirth);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@FirstName", lecturer.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", lecturer.LastName);
+                cmd.Parameters.AddWithValue("@PhoneNumber", lecturer.PhoneNumber);
+                cmd.Parameters.AddWithValue("@DateOfBirth", lecturer.DateOfBirth);
+
+               
+                cmd.Parameters.AddWithValue("@LecturerID", lecturer.LectureID);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
+       
         public void Delete(int id)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -119,12 +149,13 @@
                 string query = "DELETE FROM Lecturer WHERE LecturerID = @Id";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
-
     }
+
 }
 
 

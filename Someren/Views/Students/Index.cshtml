@@ -28,7 +28,12 @@
                 <td>@student.PhoneNumber</td>
                 <td>@student.Class</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@student.StudentNumber" class="btn btn-warning btn-sm me-2">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@student.StudentNumber"
+                       class="btn btn-warning btn-sm me-2">
+                        Edit
+                    </a>
+
+                   
                     <form asp-action="Delete" method="post" style="display:inline;">
                         <input type="hidden" name="studentNumber" value="@student.StudentNumber" />
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -37,4 +42,5 @@
             </tr>
         }
     </tbody>
+</table>
 </table>
