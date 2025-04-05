@@ -51,12 +51,25 @@ namespace Someren.Controllers
         }
 
 
+        public IActionResult Participating(int id)
+        {
+            var lecturers = _repo.GetParticipatingLecturers(id);
+            ViewBag.ActivityId = id;
+            return View(lecturers);
+        }
         [HttpPost]
         public IActionResult Delete(int id)
         {
             _repo.Delete(id);
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public IActionResult RemoveFromActivity(int lecturerId)
+        {
+            _repo.RemoveLecturerFromActivity(lecturerId); 
+            return RedirectToAction("Index", "Activity"); 
+        }
+     
 
     }
 }

@@ -7,6 +7,127 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net8.0\Someren.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net8.0\Someren.GlobalUsings.g.cs" />
+    <Compile Include="obj\Debug\net8.0\Someren.RazorAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net8.0\appsettings.json" />
+    <Content Include="bin\Debug\net8.0\Someren.deps.json" />
+    <Content Include="bin\Debug\net8.0\Someren.runtimeconfig.json" />
+    <Content Include="bin\Debug\net8.0\Someren.staticwebassets.runtime.json" />
+    <Content Include="obj\Debug\net8.0\scopedcss\bundle\Someren.styles.css" />
+    <Content Include="obj\Debug\net8.0\scopedcss\projectbundle\Someren.bundle.scp.css" />
+    <Content Include="obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css" />
+    <Content Include="obj\Debug\net8.0\Someren.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net8.0\Someren.sourcelink.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.build.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.development.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.pack.json" />
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\Someren.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0\Azure.Core.dll" />
+    <None Include="bin\Debug\net8.0\Azure.Identity.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Logging.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Options.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Identity.Client.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.SqlServer.Server.dll" />
+    <None Include="bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" />
+    <None Include="bin\Debug\net8.0\Someren.dll" />
+    <None Include="bin\Debug\net8.0\Someren.exe" />
+    <None Include="bin\Debug\net8.0\Someren.pdb" />
+    <None Include="bin\Debug\net8.0\System.ClientModel.dll" />
+    <None Include="bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll" />
+    <None Include="bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll" />
+    <None Include="bin\Debug\net8.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net8.0\System.Formats.Asn1.dll" />
+    <None Include="bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll" />
+    <None Include="bin\Debug\net8.0\System.IO.Pipelines.dll" />
+    <None Include="bin\Debug\net8.0\System.Memory.Data.dll" />
+    <None Include="bin\Debug\net8.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net8.0\System.Security.Permissions.dll" />
+    <None Include="bin\Debug\net8.0\System.Text.Encodings.Web.dll" />
+    <None Include="bin\Debug\net8.0\System.Text.Json.dll" />
+    <None Include="bin\Debug\net8.0\System.Windows.Extensions.dll" />
+    <None Include="obj\Debug\net8.0\apphost.exe" />
+    <None Include="obj\Debug\net8.0\project.razor.vs.bin" />
+    <None Include="obj\Debug\net8.0\refint\Someren.dll" />
+    <None Include="obj\Debug\net8.0\ref\Someren.dll" />
+    <None Include="obj\Debug\net8.0\Someren.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net8.0\Someren.assets.cache" />
+    <None Include="obj\Debug\net8.0\Someren.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net8.0\Someren.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net8.0\Someren.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net8.0\Someren.csproj.Up2Date" />
+    <None Include="obj\Debug\net8.0\Someren.dll" />
+    <None Include="obj\Debug\net8.0\Someren.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net8.0\Someren.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net8.0\Someren.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net8.0\Someren.pdb" />
+    <None Include="obj\Debug\net8.0\Someren.RazorAssemblyInfo.cache" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.build.Someren.props" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Someren.props" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Someren.props" />
+    <None Include="obj\Debug\net8.0\staticwebassets\msbuild.Someren.Microsoft.AspNetCore.StaticWebAssets.props" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\Someren.csproj.nuget.g.props" />
+    <None Include="obj\Someren.csproj.nuget.g.targets" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Lecturers\Add.cshtml" />
+    <None Include="Views\Lecturers\Edit.cshtml" />
+    <None Include="Views\Lecturers\Index.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Students\Add.cshtml" />
+    <None Include="Views\Students\edit.cshtml" />
+    <None Include="Views\Students\Index.cshtml" />
+    <None Include="Views\ViewStart.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
   </ItemGroup>
 

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Someren.Models.Lecturer>
+
+@{
+    ViewData["Title"] = "Lecturers in Activity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lecturers for Activity @ViewBag.ActivityId</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lecturer in Model)
+        {
+            <tr>
+                <td>@lecturer.FirstName</td>
+                <td>@lecturer.LastName</td>
+                <td>@lecturer.PhoneNumber</td>
+                <td>@lecturer.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <form asp-action="RemoveFromActivity" method="post" asp-controller="Lecturer" style="display:inline">
+                        <input type="hidden" name="lecturerId" value="@lecturer.LectureID" />
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Activities" asp-action="Index" class="btn btn-secondary mt-3">Back to Activities</a>

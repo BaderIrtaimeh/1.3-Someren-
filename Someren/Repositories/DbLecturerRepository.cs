@@ -51,8 +51,47 @@
 
             return lecturers;
         }
+        public List<Lecturer> GetParticipatingLecturers(int activityId)
+{
+    List<Lecturer> lecturers = new List<Lecturer>();
 
-        
+    using (SqlConnection conn = new SqlConnection(_connectionString))
+    {
+        string query = @"
+            SELECT 
+                LecturerID, 
+                FirstName, 
+                LastName,
+                PhoneNumber
+            FROM Lecturer
+            WHERE ActivityID = @Id
+        ";
+
+        SqlCommand cmd = new SqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@Id", activityId);
+
+        conn.Open();
+        SqlDataReader reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            Lecturer lecturer = new Lecturer
+            {
+                LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
+                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
+            };
+
+            lecturers.Add(lecturer);
+        }
+    }
+
+    return lecturers;
+}
+  
+
+
         public Lecturer GetById(int id)
         {
             Lecturer lecturer = null;
@@ -154,9 +193,37 @@
                 cmd.ExecuteNonQuery();
             }
         }
-    }
+        public void RemoveLecturerFromActivity(int lecturerId)
+        {
+            using (SqlConnection conn = new(_connectionString))
+            {
+                string query = "UPDATE Lecturer SET ActivityID = NULL WHERE LecturerID = @LecturerID";
 
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@LecturerID", lecturerId);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void AssignLecturerToActivity(int lecturerId, int activityId)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "UPDATE Lecturer SET ActivityID = @ActivityID WHERE LecturerID = @LecturerID";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ActivityID", activityId);
+                cmd.Parameters.AddWithValue("@LecturerID", lecturerId);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
 }
+    
+   
 
 
 

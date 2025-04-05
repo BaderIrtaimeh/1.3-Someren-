@@ -4,7 +4,7 @@ namespace Someren.Repositories
 {
     public interface IActivityRepository
     {   
-       List<Activity> GetAll(); 
-       
+       List<Activity> GetAll();  
+
     }
 }

@@ -3,7 +3,7 @@ using Someren.Models;
 
 namespace Someren.Repositories
 {
-    public class DbActivityRepository: IActivityRepository
+    public class DbActivityRepository : IActivityRepository
     {
         private readonly string _connectionString;
 
@@ -41,5 +41,6 @@ namespace Someren.Repositories
 
             return activities;
         }
+       
     }
 }

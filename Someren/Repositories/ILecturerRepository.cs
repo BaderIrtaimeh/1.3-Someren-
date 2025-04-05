@@ -9,6 +9,9 @@ namespace Someren.Repositories
         void Add(Lecturer lecturer);
         void Update(Lecturer lecturer);
         void Delete(int id);
+        List<Lecturer> GetParticipatingLecturers(int activityID);
+        public void AssignLecturerToActivity(int lecturerId, int activityId);
+        public void RemoveLecturerFromActivity(int lecturerId);
 
     }
 }
