@@ -1,3 +1,4 @@
+using Someren.Models;
 using Someren.Repositories;
 
 namespace Someren
@@ -13,6 +14,16 @@ namespace Someren
             builder.Services.AddScoped<ILecturerRepository, DbLecturerRepository>();
             builder.Services.AddScoped<IStudentRepository, DbStudentRepository>();
             builder.Services.AddScoped<IActivityRepository, DbActivityRepository>();
+
+
+            var connectionString = builder.Configuration.GetConnectionString("SomerenDatabase");
+
+
+            builder.Services.AddScoped<IDrinkRepository>(sp => new DbDrinkRepository(connectionString));
+            builder.Services.AddScoped<IDrinkOrderRepository>(sp => new DbDrinkOrderRepository(connectionString));
+
+
+
 
             var app = builder.Build();
 

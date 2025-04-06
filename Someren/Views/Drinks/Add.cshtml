@@ -1,0 +1,33 @@
+﻿@model Someren.Models.Drink
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Add Drink";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Add a New Drink</h2>
+
+    <form asp-action="Add" method="post">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">VAT Type</label>
+            <select asp-for="VAType" class="form-select">
+                <option value="None">None</option>
+                <option value="Low">Low</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Stock</label>
+            <input asp-for="Stock" class="form-control" type="number" min="0" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Drink</button>
+    </form>
+</div>

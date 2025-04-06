@@ -1,0 +1,45 @@
+﻿@model List<Someren.Models.Drink>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Drinks Inventory";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Drinks Inventory</h2>
+
+    <a class="btn btn-success mb-3" asp-action="Add">Add New Drink</a>
+    
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>VAT Type</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var drink in Model)
+            {
+                <tr>
+                    <td>@drink.Name</td>
+                    <td>
+                        @(drink.VAType == "None" ? "0%" :
+                            drink.VAType == "Low" ? "9%" :
+                            drink.VAType == "High" ? "21%" :
+                            drink.VAType)
+                    </td>
+                    <td>@drink.Stock</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@drink.DrinkID">Edit</a>
+
+                       
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

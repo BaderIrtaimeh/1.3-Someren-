@@ -1,0 +1,50 @@
+﻿@model Someren.Models.DrinkOrderViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Place a Drink Order";
+}
+
+<h2>Place a Drink Order</h2>
+
+@if (TempData["Confirmation"] != null)
+{
+    <div style="color: green; font-weight: bold;">
+        @TempData["Confirmation"]
+    </div>
+}
+
+<form asp-action="Add" method="post">
+    <div>
+        <label>Student:</label>
+        <select asp-for="Order.StudentNumber" class="form-control">
+            @foreach (var student in Model.Students)
+            {
+                <option value="@student.StudentNumber">
+                    @student.FirstName @student.LastName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Drink:</label>
+        <select asp-for="Order.DrinkID" class="form-control">
+            @foreach (var drink in Model.Drinks)
+            {
+                <option value="@drink.DrinkID">
+                    @drink.Name (Stock: @drink.Stock)
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Quantity:</label>
+        <input asp-for="Order.Quantity" type="number" class="form-control" min="1" value="1" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</form>
