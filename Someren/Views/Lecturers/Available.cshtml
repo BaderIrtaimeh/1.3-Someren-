@@ -1,0 +1,45 @@
+﻿@model List<Someren.Models.Lecturer>
+@{
+    ViewData["Title"] = "Available Lecturers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var activities = ViewBag.Activities as List<Someren.Models.Activity>;
+}
+
+<h2>Available Lecturers</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+            <th>Assign to Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lecturer in Model)
+        {
+            <tr>
+                <td>@lecturer.FirstName</td>
+                <td>@lecturer.LastName</td>
+                <td>@lecturer.PhoneNumber</td>
+                <td>@lecturer.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <form asp-action="AssignToActivity" method="post" asp-controller="Lecturer" style="display:inline;">
+                        <input type="hidden" name="lecturerId" value="@lecturer.LectureID" />
+                        <select name="activityId" class="form-select form-select-sm d-inline w-auto me-2">
+                            @foreach (var activity in activities)
+                            {
+                                <option value="@activity.ActivityID">@activity.Name</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-primary btn-sm">Assign</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Activity" asp-action="Index" class="btn btn-secondary mt-3">Back to Activities</a>

@@ -1,0 +1,39 @@
+﻿@model List<Someren.Models.Lecturer>
+@{
+    ViewData["Title"] = "Assign Lecturers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var activityId = ViewBag.ActivityId;
+}
+
+<h2>Assign Lecturers to Activity @activityId</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+            <th>Assign</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lecturer in Model)
+        {
+            <tr>
+                <td>@lecturer.FirstName</td>
+                <td>@lecturer.LastName</td>
+                <td>@lecturer.PhoneNumber</td>
+                <td>@lecturer.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <form asp-action="AssignToActivity" asp-controller="Lecturers" method="post">
+                        <input type="hidden" name="lecturerId" value="@lecturer.LectureID" />
+                        <input type="hidden" name="activityId" value="@activityId" />
+                        <button type="submit" class="btn btn-success btn-sm">Assign</button>
+                    </form>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Activities" asp-action="Index" class="btn btn-secondary mt-3">Back to Activities</a>

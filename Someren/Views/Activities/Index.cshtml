@@ -21,16 +21,19 @@
             <tr>
                 <td>@activity.ActivityID</td>
                 <td>@activity.Name</td>
-                <td>@activity.Time.ToString("DD-MM-YYYY")</td>
+                <td>@activity.Time.ToString("yyyy-MM-dd")</td>
                 <td>
-                <td>
-                    <a asp-controller="Lecturers" asp-action="Participating" asp-route-id="@activity.ActivityID" class="btn btn-info btn-sm">
+                   
+                    <a asp-controller="Lecturers" asp-action="Participating" asp-route-id="@activity.ActivityID" class="btn btn-info btn-sm me-2">
                         View Lecturers
                     </a>
-                </td>
+
+                    <a asp-controller="Lecturers" asp-action="Assign" asp-route-id="@activity.ActivityID" class="btn btn-primary btn-sm">
+                        Assign Lecturers
+                    </a>
+                   
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
