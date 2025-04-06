@@ -18,12 +18,12 @@ namespace Someren.Repositories
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 string query = @"
-        SELECT 
-            ActivityID, 
-           Name, 
-            Time
-        FROM Activity
-        ";
+            SELECT 
+                ActivityID, 
+                Name, 
+                Time
+            FROM Activity";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
 
@@ -41,6 +41,4 @@ namespace Someren.Repositories
 
             return activities;
         }
-       
-    }
-}
+    }}

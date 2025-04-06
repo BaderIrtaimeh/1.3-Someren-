@@ -8,11 +8,14 @@ namespace Someren.Controllers
     public class LecturersController : Controller
     {
         private readonly ILecturerRepository _repo;
+        private readonly IActivityRepository _activityRepo;
 
-        public LecturersController(ILecturerRepository repo)
+        public LecturersController(ILecturerRepository repo, IActivityRepository activityRepo)
         {
             _repo = repo;
+            _activityRepo = activityRepo; 
         }
+
         public IActionResult Index()
         {
             var lecturers = _repo.GetAll();
@@ -64,12 +67,35 @@ namespace Someren.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public IActionResult RemoveFromActivity(int lecturerId)
+		public IActionResult RemoveFromActivity(int lecturerId, int activityId)
+		{
+			_repo.RemoveLecturerFromActivity(lecturerId);
+
+			return RedirectToAction("Participating", new { id = activityId });
+		}
+        public IActionResult Available()
         {
-            _repo.RemoveLecturerFromActivity(lecturerId); 
-            return RedirectToAction("Index", "Activity"); 
+            var availableLecturers = _repo.GetAvailableLecturers();
+            ViewBag.Activities = _activityRepo.GetAll(); 
+            return View(availableLecturers);
         }
-     
+        [HttpPost]
+        [HttpPost]
+        public IActionResult AssignToActivity(int lecturerId, int activityId)
+        {
+            _repo.AssignLecturerToActivity(lecturerId, activityId);
+            return RedirectToAction("Assign", new { id = activityId }); 
+        }
+
+
+        public IActionResult Assign(int id) 
+        {
+            var availableLecturers = _repo.GetAvailableLecturers();
+            ViewBag.ActivityId = id;
+            return View(availableLecturers);
+        }
+
+
 
     }
 }

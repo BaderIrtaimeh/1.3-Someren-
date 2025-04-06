@@ -62,7 +62,8 @@
                 LecturerID, 
                 FirstName, 
                 LastName,
-                PhoneNumber
+                PhoneNumber,
+                DateOfBirth
             FROM Lecturer
             WHERE ActivityID = @Id
         ";
@@ -81,6 +82,7 @@
                 FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                 LastName = reader.GetString(reader.GetOrdinal("LastName")),
                 PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                DateOfBirth = reader.GetDateTime(reader.GetOrdinal("DateOfBirth"))
             };
 
             lecturers.Add(lecturer);
@@ -193,18 +195,43 @@
                 cmd.ExecuteNonQuery();
             }
         }
-        public void RemoveLecturerFromActivity(int lecturerId)
+		public void RemoveLecturerFromActivity(int lecturerId)
+		{
+			using (SqlConnection conn = new SqlConnection(_connectionString))
+			{
+				string query = "UPDATE Lecturer SET ActivityID = NULL WHERE LecturerID = @LecturerID";
+				SqlCommand cmd = new SqlCommand(query, conn);
+				cmd.Parameters.AddWithValue("@LecturerID", lecturerId);
+
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+		}
+        public List<Lecturer> GetAvailableLecturers()
         {
-            using (SqlConnection conn = new(_connectionString))
+            List<Lecturer> lecturers = new List<Lecturer>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "UPDATE Lecturer SET ActivityID = NULL WHERE LecturerID = @LecturerID";
-
+                string query = "SELECT LecturerID, FirstName, LastName, PhoneNumber, DateOfBirth FROM Lecturer WHERE ActivityID IS NULL";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@LecturerID", lecturerId);
-
                 conn.Open();
-                cmd.ExecuteNonQuery();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    lecturers.Add(new Lecturer
+                    {
+                        LectureID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
+                        FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                        LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                        PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                        DateOfBirth = reader.GetDateTime(reader.GetOrdinal("DateOfBirth"))
+                    });
+                }
             }
+
+            return lecturers;
         }
         public void AssignLecturerToActivity(int lecturerId, int activityId)
         {
